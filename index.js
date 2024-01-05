@@ -2,17 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
-dotenv.config();
+dotenv.config(); 
 
 // Replace with your actual Google Generative AI API key
 const googleGenerativeAIKey = process.env.API;
 const genAI = new GoogleGenerativeAI(googleGenerativeAIKey);
 
 app.use(bodyParser.json());
-
+app.use(cors());
 // Preload the model on server start
 let generativeModel;
 
